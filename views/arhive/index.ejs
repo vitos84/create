@@ -1,0 +1,41 @@
+<%- include('../layout/header'); -%>
+<div class="main">
+    <div class="container">
+      <div class="content">
+        <%posts.forEach(post=>{ %>
+        <div class="post">
+          <div class="bottom">
+            <h2>
+               <a href="/posts/<%= post.url %>"><%= post.title%></a>
+            </h2>
+           
+          </div>
+          <div class="body">
+            <p><%=post.body%></p>
+          </div>
+          <div class="bottom">
+            <div class="autor">
+              Автор:
+              <a href="/users/<%= post.owner.login%>"><%= post.owner.login%></a>
+            </div>
+             <a href="/posts/<%= post.url %>#<%= post.id %>">Коментарий :<%= post.comentCount %> </a>
+          </div>
+        </div>
+        <% }) %> 
+        <div class="pagination">
+          <% if(current>2) { %>
+            <a class='new' href="/arhive/<%= Number(current)-1 %>">← К новым</a>
+          <% } %>
+          <% if(pages>0 && current<pages) { %>
+            <a class='old' href="/arhive/<%= Number(current)+1 %>">К старым →</a>
+          <% } %>
+          <% if(current==2) { %>
+            <a class='new' href="/">На главную</a>
+          <% } %>
+        </div>
+      </div>
+<%- include('../layout/sidebar'); -%>     
+    </div>
+  </div>
+
+<%- include('../layout/footer'); -%> 

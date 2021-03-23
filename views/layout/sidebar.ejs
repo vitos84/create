@@ -37,8 +37,13 @@
         </div>
        </form>
     <%} else{ %> 
-      <p>Привет <%= user.login %></p>
-      <a href="/api/auth/logout">Выход</a>
+      <ul>
+        <li>Привет,<a href="/users/<%= user.login %>"><%= user.login %></a>! </li>
+        <li><a href="/post/add">Добавить пост!!</a></li>
+        <li> <a href="/api/auth/logout">Выход</a></li>
+      </ul>
+    
+     
     <% } %>  
     </div>
     <div class="box">box2</div>

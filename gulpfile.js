@@ -28,8 +28,8 @@ function styles(){
 function scripts(){
   return src(['dev/js/auth.js',
               'dev/js/post.js',
-              'dev/js/coment.js',
-              'node_modules/medium-editor/dist/js/medium-editor.min.js'
+              'dev/js/coment.js'
+            
 
 ])
   .pipe(concat('scripts.js')) 

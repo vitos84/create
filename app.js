@@ -52,7 +52,7 @@ app.use('/',routes.arhive);
 app.use('/api/auth',routes.auth);
 app.use('/post',routes.post);
 app.use('/coment',routes.coment);
-
+app.use('/upload',routes.upload);
 
 // catch 404 and forward to error handler
 app.use((req,res,next)=>{

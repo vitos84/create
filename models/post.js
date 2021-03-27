@@ -1,7 +1,6 @@
 const mongoose=require('mongoose');
 const Schema= mongoose.Schema;
-const URLSlugs=require('mongoose-url-slugs');
-const tr=require('transliter');
+
 
 const schema=new Schema({
     title:{
@@ -14,6 +13,15 @@ const schema=new Schema({
     owner:{
         type:Schema.Types.ObjectId,
         ref:'User'
+    },
+    url:{
+        type:String
+    },
+    status:{
+        type:String,
+        enum:['published','draft'],
+        required:true,
+        default:'published'
     },
     comentCount:{
         type:Number,
@@ -35,10 +43,7 @@ schema.statics={
     }
 };
 
-schema.plugin(URLSlugs(
-    'title',
-    {field: 'url',
-     generator:text=>tr.slugify(text)}))
+
 
 schema.set('toJson',{virtual:true});
 module.exports=mongoose.model('Post',schema);

@@ -37,11 +37,11 @@ router.post('/image',(req,res)=>{
             if(err.code==='LIMIT_FILE_SIZE'){
                 error = 'Картинка не более 1mb!';
             }
-            res.json({
-                ok:!error,
-                error
-            });
         }
+        res.json({
+            ok:!error,
+            error
+        });
     })
 });
 

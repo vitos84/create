@@ -6,13 +6,15 @@ $(function() {
     $('.post-form input, #post-body').removeClass('error');
   });
     //publisch
-    $('.publisch-button').on('click',(e)=>{
+    $('.publisch-button, .save-button').on('click',function(e){
         e.preventDefault();
-    
-
+    console.log(this);
+    const isDraft=$(this).attr('class').split(' ')[0]==='save-button';
         const data={
             title:$('#post-title').val(),
-            body:$('#post-body').html(),
+            body:$('#post-body').val(),
+            isDraft:isDraft,
+            postId:$('#post-id').val()
         };
         $.ajax({
             type: 'POST',
@@ -31,7 +33,13 @@ $(function() {
            }
            else{
                //$('.registr h2').after('<p class="success">'+data.messege +'</p>')
-               $(location).attr('href','/');
+             // $(location).attr('href','/');
+             console.log(isDraft);
+             if (isDraft) {
+              $(location).attr('href', '/post/edit/' + data.post.id);
+            } else {
+              $(location).attr('href', '/posts/' + data.post.url);
+            }
             }
          });
          
